@@ -1,0 +1,13 @@
+<mat-card *ngFor = "let product of availableProducts">
+    
+    <button mat-icon-button (click) = "onDeleteProduct(product)"><mat-icon>delete</mat-icon></button>
+    <button mat-icon-button (click) = "onUpdateProduct(product)"><mat-icon>edit</mat-icon></button>
+
+    <div class="product-info">
+        <div class = "product-name">{{ product.name }}</div>
+        <div class = "product-category">{{ product.category?.name }}</div>
+    </div>
+
+    <button mat-raised-button (click) = "onAddProductToShoppingList(product)">Aggiungi a lista</button>
+
+</mat-card>

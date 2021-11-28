@@ -1,0 +1,13 @@
+<div class = "new-category-container">
+    <form #newCategoryForm = "ngForm" class = "new-category-form">
+
+        <mat-form-field>
+            <mat-label>Nome categoria</mat-label>
+            <input matInput type="text" [(ngModel)] = "newCategory.name" required name = "categoryName"/>
+        </mat-form-field>
+        <ngx-colors ngx-colors-trigger format = "hex" [(ngModel)] = "newCategory.color" name = "categoryColor">
+        </ngx-colors>
+        
+        <button mat-raised-button [disabled]="newCategoryForm.invalid" (click) = "addNewCategory()">AGGIUNGI</button>
+    </form>
+</div>

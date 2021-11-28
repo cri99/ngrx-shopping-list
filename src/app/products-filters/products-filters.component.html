@@ -1,0 +1,22 @@
+
+
+<form [formGroup] = "productFiltersForm">
+    <mat-form-field>
+        <mat-label>Filtra per nome</mat-label>
+        <input matInput type="text" formControlName = "name" />
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Filtra per categoria</mat-label>
+        <mat-select formControlName = "category">
+            <mat-option [value] = "null">Tutte le categorie</mat-option>
+            <mat-option *ngFor="let category of availableCategories" [value]="category" >
+                {{category.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-icon-button (click) = "resetFilters()">
+        <mat-icon>close</mat-icon>
+    </button>
+
+</form>
