@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Category, Product } from '../shared/types';
 
 @Component({
@@ -17,8 +18,11 @@ export class NewCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addNewCategory() {
+  addNewCategory(newCategoryForm: NgForm) {
     this.newCategoryCreated.emit(this.newCategory);
+    this.newCategory = new Category();
+    newCategoryForm.reset();
+
   }
 
 }

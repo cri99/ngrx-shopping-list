@@ -3,7 +3,7 @@ import { Utils } from "./utils";
 export class Product {
     id: number;
     name: string;
-    category?: Category | undefined;
+    category?: Category;
     inList: boolean;
 
     constructor(name: string = "", category?: Category) {
@@ -27,9 +27,9 @@ export class Category {
 }
 
 
-export class ProductFilters implements Omit<Product, 'id' | 'inList'> {
-    category: Category | undefined;
-    name: string;
+export class ProductFilters implements Partial<Omit<Product, 'id' | 'inList'>> {
+    category?: Category;
+    name?: string;
     constructor(name: string = "",  category?: Category) {
         this.name = name;
         this.category = category;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, merge, Observable, ReplaySubject } from 'rxjs';
-import { map, withLatestFrom } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Product, ProductFilters } from './types';
 import { DEFAULT_PRODUCTS } from './utils';
 
@@ -10,9 +10,8 @@ import { DEFAULT_PRODUCTS } from './utils';
 export class ProductsService {
 
   private readonly _allProducts$ = new BehaviorSubject<Product[]>(DEFAULT_PRODUCTS);
-  private readonly _productFilters$ = new BehaviorSubject<ProductFilters>({ category: undefined, name: ""});
-
-
+  private readonly _productFilters$ = new BehaviorSubject<ProductFilters>({});
+  
   constructor() { 
   }
 
@@ -47,7 +46,36 @@ export class ProductsService {
     }
   }
 
-  newProductsFilters(productFilters: ProductFilters) {
+  updateProductsFilters(productFilters: ProductFilters) {
     this._productFilters$.next(productFilters);
   }
+
+  addNewProduct(newProduct: Product) {
+    const currentProducts = this._allProducts$.value;
+    currentProducts.push(newProduct);
+    this._allProducts$.next(currentProducts);
+  }
+
+  updateProduct(updatedProduct: Product) {
+    const currentProducts = this._allProducts$.value;
+    const idxOfProductToUpdate = currentProducts.findIndex(product => product.id === updatedProduct.id);
+    currentProducts[idxOfProductToUpdate] = updatedProduct;
+    this._allProducts$.next(currentProducts);
+  }
+
+  deleteProduct(productToDeleteId: number) {
+    const currentProducts = this._allProducts$.value;
+    const idxOfProductToDelete = currentProducts.findIndex(product => product.id === productToDeleteId);
+    currentProducts.splice(idxOfProductToDelete, 1);
+    this._allProducts$.next(currentProducts);
+  }
+
+  markProductAsPurchased(purchasedProduct: Product) {
+    this.updateProduct({...purchasedProduct, inList: false});
+  }
+
+  addProductToShoppingList(productToAdd: Product) {
+    this.updateProduct({...productToAdd, inList: true});
+  }
+
 }

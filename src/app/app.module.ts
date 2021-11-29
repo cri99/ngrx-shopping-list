@@ -18,6 +18,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 
 import { ShoppingListContainerComponent } from './shopping-list-container/shopping-list-container.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,12 @@ import { ShoppingListContainerComponent } from './shopping-list-container/shoppi
     AvailableProductsListComponent,
     ProductsFiltersComponent,
     SelectedProductsListComponent,
-    ShoppingListContainerComponent
+    ShoppingListContainerComponent,
+    UpdateProductComponent
   ],
   imports: [
     MatCardModule,
+    MatDialogModule,
     MatInputModule,
     MatDialogModule,
     MatButtonModule,

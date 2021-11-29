@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Product } from '../shared/types';
 
 @Component({
   selector: 'app-selected-products-list',
@@ -8,9 +9,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class SelectedProductsListComponent implements OnInit {
 
+  @Input() shoppingListProducts!: Product[];
+  @Output() purchasedProductEvent = new EventEmitter<Product>();
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  markProductAsPurchased(product: Product) {
+    this.purchasedProductEvent.emit(product);
   }
 
 }

@@ -1,9 +1,41 @@
 
-<app-new-category></app-new-category>
-<app-new-product></app-new-product>
+<ng-container *ngIf = "{
+    categories: (availableCategories$ | async),
+    availableProducts: (availableProducts$ | async),
+    shoppingListProducts: (shoppingListProducts$ | async)
+} as obs">
 
-<app-products-filters></app-products-filters>
+<div>
+    <app-new-category
+        (newCategoryCreated) = "onNewCategoryCreated($event)"    
+    ></app-new-category>
 
-<app-available-products-list
-    [availableProducts] = "availableProducts$ | async"
-></app-available-products-list>
+    <app-new-product 
+        [availableCategories] = "obs.categories"
+        (newProductCreated) = "onNewProductCreated($event)"></app-new-product>
+
+    <app-products-filters 
+        [availableCategories] = "obs.categories"
+        (productFiltersChanged) = "onProductFiltersChanged($event)"></app-products-filters>
+
+    <app-available-products-list
+        [availableProducts] = "obs.availableProducts"
+        (addProductToShoppingListEvent) = "onAddProductToShoppingList($event)"
+        (deleteProductEvent) = "onDeleteProduct($event)"
+        (productToUpdateEvent) = "onProductToUpdate($event)"
+    ></app-available-products-list>
+</div>
+
+
+<div>
+    <app-selected-products-list
+        [shoppingListProducts] = "obs.shoppingListProducts"
+        (purchasedProductEvent) = "onPurchasedProduct($event)"
+    ></app-selected-products-list>
+</div>
+
+    
+
+
+
+</ng-container>

@@ -9,12 +9,12 @@
     <mat-form-field>
         <mat-label>Categoria</mat-label>
         <mat-select [(ngModel)] = "newProduct.category" required name = "productCategory">
-          <mat-option *ngFor="let category of availableCategories" [value]="category" >
+          <mat-option *ngFor="let category of availableCategories" [value]="category" [style.background] = "category.color">
             {{category.name}}
           </mat-option>
         </mat-select>
     </mat-form-field>
     
-    <button mat-raised-button [disabled]="newProductForm.invalid" (click) = "addNewProduct()">AGGIUNGI</button>
+    <button mat-raised-button [disabled]="newProductForm.invalid" (click) = "addNewProduct(newProductForm)">AGGIUNGI</button>
 </form>
 

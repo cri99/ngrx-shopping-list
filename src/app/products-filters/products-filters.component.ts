@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, Output,EventEmitter, Input 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category, ProductFilters } from '../shared/types';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Utils } from '../shared/utils';
 
 @Component({
   selector: 'app-products-filters',
@@ -27,7 +28,7 @@ export class ProductsFiltersComponent implements OnInit {
 
   private initForm() {
     this.productFiltersForm = new FormGroup({
-      name: new FormControl("", Validators.required),
+      name: new FormControl(""),
       category: new FormControl()
     });
   }
@@ -35,7 +36,7 @@ export class ProductsFiltersComponent implements OnInit {
   private initProductFiltersFormHandler() {
     this.productFiltersForm.valueChanges.pipe(
       debounceTime(300),
-      distinctUntilChanged(this.compareProductFilters)
+      distinctUntilChanged(Utils.compareProducts)
     ).subscribe((productFilterValue: ProductFilters)  => {
       this.productFiltersChanged.emit(productFilterValue);
     });
@@ -43,10 +44,6 @@ export class ProductsFiltersComponent implements OnInit {
  
   resetFilters() {
     this.productFiltersForm.reset();
-  }
-
-  private compareProductFilters(current: ProductFilters, previous: ProductFilters): boolean {
-    return current.name === previous.name && current.category?.id === previous.category?.id;
   }
 
 }

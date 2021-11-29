@@ -11,25 +11,25 @@ export class AvailableProductsListComponent implements OnInit {
 
   @Input() availableProducts: Product[] | null = [];
 
-  @Output() deleteProduct = new EventEmitter<Product>();
-  @Output() updateProduct = new EventEmitter<Product>();
-  @Output() addProductToShoppingList = new EventEmitter<Product>();
+  @Output() deleteProductEvent = new EventEmitter<number>();
+  @Output() productToUpdateEvent = new EventEmitter<Product>();
+  @Output() addProductToShoppingListEvent = new EventEmitter<Product>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onUpdateProduct(productToUpdate: Product) {
-    this.updateProduct.emit(productToUpdate);
+  onProductToUpdate(productToUpdate: Product) {
+    this.productToUpdateEvent.emit(productToUpdate);
   }
 
-  onDeleteProduct(productToDelete: Product) {
-    this.deleteProduct.emit(productToDelete);
+  onDeleteProduct(productToDeleteID: number) {
+    this.deleteProductEvent.emit(productToDeleteID);
   }
 
   onAddProductToShoppingList(productToAdd: Product) {
-    this.addProductToShoppingList.emit(productToAdd)
+    this.addProductToShoppingListEvent.emit(productToAdd)
   }
 
 }

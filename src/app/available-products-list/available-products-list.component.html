@@ -1,7 +1,7 @@
-<mat-card *ngFor = "let product of availableProducts">
+<mat-card *ngFor = "let product of availableProducts" [style.background] = "product.category?.color">
     
-    <button mat-icon-button (click) = "onDeleteProduct(product)"><mat-icon>delete</mat-icon></button>
-    <button mat-icon-button (click) = "onUpdateProduct(product)"><mat-icon>edit</mat-icon></button>
+    <button mat-icon-button (click) = "onDeleteProduct(product.id)"><mat-icon>delete</mat-icon></button>
+    <button mat-icon-button (click) = "onProductToUpdate(product)"><mat-icon>edit</mat-icon></button>
 
     <div class="product-info">
         <div class = "product-name">{{ product.name }}</div>
