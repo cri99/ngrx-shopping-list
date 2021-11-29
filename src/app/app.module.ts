@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import { NgxColorsModule } from 'ngx-colors';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ShoppingListContainerComponent } from './shopping-list-container/shopping-list-container.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
@@ -32,6 +33,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     UpdateProductComponent
   ],
   imports: [
+    FlexLayoutModule,
     MatCardModule,
     MatDialogModule,
     MatInputModule,

@@ -14,7 +14,7 @@ export class Utils {
      * @returns 
      */
     static compareProducts(current: Product, previous: Product): boolean {
-        return current.name === previous.name && current.category?.id === previous.category?.id;
+        return current.name.trim() === previous.name.trim() && current.category?.id === previous.category?.id;
     }
 }
 

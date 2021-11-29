@@ -1,10 +1,13 @@
-<mat-card *ngFor = "let product of shoppingListProducts" [style.background] = "product.category?.color">
+    <div fxLayout="row wrap" fxLayoutGap="20px">
+        <mat-card *ngFor = "let product of shoppingListProducts" [style.background] = "product.category?.color" fxFlex = "45%" class = "shopping-list-product-card">
 
-    <div class="product-info">
-        <div class = "product-name">{{ product.name }}</div>
-        <div class = "product-category">{{ product.category?.name }}</div>
+            <div class="product-info">
+                <div class = "product-name">{{ product.name }}</div>
+                <div class = "product-category">{{ product.category?.name }}</div>
+            </div>
+        
+            <button mat-raised-button (click) = "markProductAsPurchased(product)">Comprato</button>
+        
+        </mat-card>
     </div>
 
-    <button mat-raised-button (click) = "markProductAsPurchased(product)">Comprato</button>
-
-</mat-card>
