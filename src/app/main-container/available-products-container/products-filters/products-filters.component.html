@@ -1,12 +1,12 @@
 
 
-<form [formGroup] = "productFiltersForm">
-    <mat-form-field>
+<form [formGroup] = "productFiltersForm" fxFlexLayout = "row" fxLayoutAlign = "space-between center">
+    <mat-form-field fxFlex = "40">
         <mat-label>Filtra per nome</mat-label>
         <input matInput type="text" formControlName = "name" />
     </mat-form-field>
     
-    <mat-form-field>
+    <mat-form-field fxFlex = "35">
         <mat-label>Filtra per categoria</mat-label>
         <mat-select formControlName = "category">
             <mat-option [value] = "null">Tutte le categorie</mat-option>
@@ -15,8 +15,9 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <button mat-icon-button (click) = "resetFilters()">
-        <mat-icon>close</mat-icon>
+
+    <button fxFlex = "20" mat-button (click) = "resetFilters()">
+        Resetta Filtri
     </button>
 
 </form>

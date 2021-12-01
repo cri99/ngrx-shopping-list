@@ -1,0 +1,16 @@
+
+<div class = "section-title">
+    Ricerca prodotti
+</div>
+
+<app-products-filters 
+    [availableCategories] = "availableCategories"
+    (productFiltersChangedEvent) = "onProductFiltersChanged($event)"></app-products-filters>
+
+<app-available-products-list
+    [availableProducts] = "availableProducts$ | async"
+    (addProductToShoppingListEvent) = "onAddProductToShoppingList($event)"
+    (deleteProductEvent) = "onDeleteProduct($event)"
+    (productToUpdateEvent) = "onProductToUpdate($event)"
+></app-available-products-list>
+

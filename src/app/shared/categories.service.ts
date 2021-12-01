@@ -18,20 +18,6 @@ export class CategoriesService {
     this._allCategories$.next(currentCategories);
   }
 
-  updateCategory(updatedCategory: Category) {
-    const currentCategories = this._allCategories$.value;
-    const idxOfProductToUpdate = currentCategories.findIndex(category => category.id === updatedCategory.id);
-    currentCategories[idxOfProductToUpdate] = updatedCategory;
-    this._allCategories$.next(currentCategories);
-  }
-
-  deleteCategory(categoryToDeleteId: number) {
-    const currentCategories = this._allCategories$.value;
-    const idxOfCategoryToDelete = currentCategories.findIndex(category => category.id === categoryToDeleteId);
-    currentCategories.slice(idxOfCategoryToDelete, 1);
-    this._allCategories$.next(currentCategories);
-  }
-
   getAllCategories$(): Observable<Category[]> {
     return this._allCategories$.asObservable();
   }

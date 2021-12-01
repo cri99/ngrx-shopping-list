@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Product } from '../shared/types';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter, TrackByFunction } from '@angular/core';
+import { Utils } from 'src/app/shared/utils';
+import { Product } from '../../shared/types';
 
 @Component({
   selector: 'app-selected-products-list',
@@ -11,7 +12,8 @@ export class SelectedProductsListComponent implements OnInit {
 
   @Input() shoppingListProducts!: Product[];
   @Output() purchasedProductEvent = new EventEmitter<Product>();
-
+  trackProductByIDFn: TrackByFunction<Product> = Utils.getTrackProductByIDFn();
+  
   constructor() { }
 
   ngOnInit(): void {}

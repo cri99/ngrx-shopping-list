@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Category, Product } from '../shared/types';
+import { Product, Category } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-new-product',
@@ -8,20 +8,20 @@ import { Category, Product } from '../shared/types';
   styleUrls: ['./new-product.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewProductComponent implements OnInit {
+export class NewProductComponent {
 
   newProduct: Product = new Product();
-  @Input() availableCategories: Category[] | null = [];
-  @Output() newProductCreated = new EventEmitter<Product>();
+  @Input() availableCategories: Category[] = [];
+  @Output() newProductCreatedEvent = new EventEmitter<Product>();
 
   constructor() { }
 
-  ngOnInit(): void {
-      
+  addNewProduct(newProductForm: NgForm): void {
+    this.newProductCreatedEvent.emit(this.newProduct);
+    this.resetForm(newProductForm);
   }
 
-  addNewProduct(newProductForm: NgForm): void {
-    this.newProductCreated.emit(this.newProduct);
+  resetForm(newProductForm: NgForm) {
     this.newProduct = new Product();
     newProductForm.reset();
   }

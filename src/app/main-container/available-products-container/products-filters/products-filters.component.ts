@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Category, ProductFilters } from '../shared/types';
+import { Category, ProductFilters } from '../../../shared/types';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Utils } from '../shared/utils';
+import { Utils } from '../../../shared/utils';
 
 @Component({
   selector: 'app-products-filters',
@@ -17,7 +17,7 @@ export class ProductsFiltersComponent implements OnInit {
   productFilters = new ProductFilters();
   
   @Input() availableCategories: Category[] = [];
-  @Output() productFiltersChanged = new EventEmitter<ProductFilters>();
+  @Output() productFiltersChangedEvent = new EventEmitter<ProductFilters>();
 
   constructor() { }
 
@@ -38,7 +38,7 @@ export class ProductsFiltersComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(Utils.compareProducts)
     ).subscribe((productFilterValue: ProductFilters)  => {
-      this.productFiltersChanged.emit(productFilterValue);
+      this.productFiltersChangedEvent.emit(productFilterValue);
     });
   }
  

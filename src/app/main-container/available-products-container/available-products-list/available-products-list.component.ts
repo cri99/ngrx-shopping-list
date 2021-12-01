@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from '../shared/types';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, TrackByFunction } from '@angular/core';
+import { Utils } from 'src/app/shared/utils';
+import { Product } from '../../../shared/types';
 
 @Component({
   selector: 'app-available-products-list',
@@ -7,18 +8,17 @@ import { Product } from '../shared/types';
   styleUrls: ['./available-products-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AvailableProductsListComponent implements OnInit {
+export class AvailableProductsListComponent {
 
-  @Input() availableProducts: Product[] | null = [];
+  @Input() availableProducts: Product[] = [];
 
   @Output() deleteProductEvent = new EventEmitter<number>();
   @Output() productToUpdateEvent = new EventEmitter<Product>();
   @Output() addProductToShoppingListEvent = new EventEmitter<Product>();
 
-  constructor() { }
+  trackProductByIDFn: TrackByFunction<Product> = Utils.getTrackProductByIDFn();
 
-  ngOnInit(): void {
-  }
+  constructor() { }
 
   onProductToUpdate(productToUpdate: Product) {
     this.productToUpdateEvent.emit(productToUpdate);
@@ -31,5 +31,4 @@ export class AvailableProductsListComponent implements OnInit {
   onAddProductToShoppingList(productToAdd: Product) {
     this.addProductToShoppingListEvent.emit(productToAdd)
   }
-
 }

@@ -1,12 +1,16 @@
 
+<div class = "section-title"> 
+  Nuovo Prodotto
+</div>
 
-<form #newProductForm = "ngForm">
-    <mat-form-field>
+<form #newProductForm = "ngForm" fxFlexLayout = "row" fxLayoutAlign = "space-between center">
+
+    <mat-form-field fxFlex = "40">
         <mat-label>Nome prodotto</mat-label>
         <input matInput type="text" [(ngModel)] = "newProduct.name" required name = "productName"/>
     </mat-form-field>
     
-    <mat-form-field>
+    <mat-form-field fxFlex = "35">
         <mat-label>Categoria</mat-label>
         <mat-select [(ngModel)] = "newProduct.category" required name = "productCategory">
           <mat-option *ngFor="let category of availableCategories" [value]="category" [style.background] = "category.color">
@@ -15,6 +19,6 @@
         </mat-select>
     </mat-form-field>
     
-    <button mat-raised-button [disabled]="newProductForm.invalid" (click) = "addNewProduct(newProductForm)">AGGIUNGI</button>
+    <button fxFlex = "20" mat-raised-button [disabled]="newProductForm.invalid" (click) = "addNewProduct(newProductForm)">AGGIUNGI</button>
 </form>
 

@@ -1,3 +1,4 @@
+import { TrackByFunction } from "@angular/core";
 import { Category, Product, ProductFilters } from "./types";
 
 
@@ -14,7 +15,11 @@ export class Utils {
      * @returns 
      */
     static compareProducts(current: Product, previous: Product): boolean {
-        return current.name.trim() === previous.name.trim() && current.category?.id === previous.category?.id;
+        return current.name?.trim() === previous.name?.trim() && current.category?.id === previous.category?.id;
+    }
+
+    static getTrackProductByIDFn(): TrackByFunction<Product> {
+        return (index, product) => product.id;
     }
 }
 

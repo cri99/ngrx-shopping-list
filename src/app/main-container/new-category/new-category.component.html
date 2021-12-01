@@ -1,0 +1,17 @@
+<div class = "section-title">
+    Nuova Categoria
+</div>
+
+<form #newCategoryForm = "ngForm" class = "new-category-form" fxFlexLayout = "row" fxLayoutAlign = "space-between center">
+
+    <mat-form-field fxFlex = "40">
+        <mat-label>Nome categoria</mat-label>
+        <input matInput type="text" [(ngModel)] = "newCategory.name" required name = "categoryName"/>
+    </mat-form-field>
+    
+    <ngx-colors fxFlex = "35" ngx-colors-trigger format = "hex" [(ngModel)] = "newCategory.color" name = "categoryColor">
+    </ngx-colors>
+    
+    <button fxFlex ="20" mat-raised-button type = "submit" [disabled]="newCategoryForm.invalid" (click)="addNewCategory(newCategoryForm)">AGGIUNGI</button>
+</form>
+

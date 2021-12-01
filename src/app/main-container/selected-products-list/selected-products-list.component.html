@@ -1,5 +1,5 @@
-    <div fxLayout="row wrap" fxLayoutGap="20px">
-        <mat-card *ngFor = "let product of shoppingListProducts" [style.background] = "product.category?.color" fxFlex = "45%" class = "shopping-list-product-card">
+    <div fxLayout="row wrap"  fxLayoutAlign = "space-between">
+        <mat-card *ngFor = "let product of shoppingListProducts; trackBy: trackProductByIDFn" [style.background] = "product.category?.color" class = "shopping-list-product-card">
 
             <div class="product-info">
                 <div class = "product-name">{{ product.name }}</div>

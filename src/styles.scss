@@ -37,3 +37,15 @@ $shopping-list-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.section-title {
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 17px;
+  margin-bottom: 10px
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 17px;
+}

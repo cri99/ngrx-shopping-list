@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NewProductComponent } from './new-product/new-product.component';
-import { NewCategoryComponent } from './new-category/new-category.component';
-import { AvailableProductsListComponent } from './available-products-list/available-products-list.component';
-import { ProductsFiltersComponent } from './products-filters/products-filters.component';
-import { SelectedProductsListComponent } from './selected-products-list/selected-products-list.component';
+import { AvailableProductsListComponent } from './main-container/available-products-container/available-products-list/available-products-list.component';
+import { ProductsFiltersComponent } from './main-container/available-products-container/products-filters/products-filters.component';
+import { SelectedProductsListComponent } from './main-container/selected-products-list/selected-products-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
@@ -18,8 +16,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { ShoppingListContainerComponent } from './shopping-list-container/shopping-list-container.component';
-import { UpdateProductComponent } from './update-product/update-product.component';
+import { ShoppingListContainerComponent } from './main-container/main-container.component';
+import { AvailableProductsContainerComponent } from './main-container/available-products-container/available-products-container.component';
+import { UpdateProductComponent } from './main-container/update-product/update-product.component';
+import { NewCategoryComponent } from './main-container/new-category/new-category.component';
+import { NewProductComponent } from './main-container/new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     ProductsFiltersComponent,
     SelectedProductsListComponent,
     ShoppingListContainerComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    AvailableProductsContainerComponent
   ],
   imports: [
     FlexLayoutModule,

@@ -1,0 +1,35 @@
+
+<ng-container *ngIf = "{
+    categories: (availableCategories$ | async),
+    shoppingListProducts: (shoppingListProducts$ | async)
+} as obs">
+
+    <div fxLayout="row" fxLayoutAlign="space-between">
+        <div fxFlex = "48">
+            <h1>Catalogo Prodotti</h1>
+
+            <app-new-category
+                (newCategoryCreatedEvent) = "onNewCategoryCreated($event)"    
+            ></app-new-category>
+
+            <app-new-product 
+                [availableCategories] = "obs.categories"
+                (newProductCreatedEvent) = "onNewProductCreated($event)"></app-new-product>
+
+            <app-available-products-container
+                [availableCategories] = "obs.categories"
+            ></app-available-products-container>
+        </div>
+
+
+        <div fxFlex = "48" fxFlexOffset = "4">
+            <h1>Lista Della Spesa</h1>
+
+            <app-selected-products-list
+                [shoppingListProducts] = "obs.shoppingListProducts"
+                (purchasedProductEvent) = "onPurchasedProduct($event)"
+            ></app-selected-products-list>
+        </div>
+    </div>
+
+</ng-container>
