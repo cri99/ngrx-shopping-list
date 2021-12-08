@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { ProductsService } from 'src/app/shared/products.service';
-import { Category, Product, ProductFilters } from 'src/app/shared/types';
+import { ProductsService } from '../../shared/products.service';
+import { Category, Product, ProductFilters } from '../../shared/types';
 import { UpdateProductModalData, UpdateProductComponent } from '../update-product/update-product.component';
 
 @Component({

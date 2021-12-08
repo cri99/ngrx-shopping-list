@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
-import { Category, Product } from 'src/app/shared/types';
-import { Utils } from 'src/app/shared/utils';
+import { Category, Product } from '../../shared/types';
+import { Utils } from '../../shared/utils';
 
 @Component({
   selector: 'app-update-product',

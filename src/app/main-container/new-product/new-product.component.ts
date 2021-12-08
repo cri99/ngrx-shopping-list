@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Product, Category } from 'src/app/shared/types';
+import { Product, Category } from '../../shared/types';
 
 @Component({
   selector: 'app-new-product',

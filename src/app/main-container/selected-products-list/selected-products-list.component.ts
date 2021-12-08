@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter, TrackByFunction } from '@angular/core';
-import { Utils } from 'src/app/shared/utils';
+import { Utils } from '../../shared/utils';
 import { Product } from '../../shared/types';
 
 @Component({

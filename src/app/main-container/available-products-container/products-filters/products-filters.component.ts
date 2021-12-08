@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Category, ProductFilters } from '../../../shared/types';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Utils } from '../../../shared/utils';
