@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { CategoriesService } from '../shared/categories.service';
 import { ProductsService } from '../shared/products.service';
 import { Category, Product } from '../shared/types';

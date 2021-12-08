@@ -35,7 +35,7 @@ export class ProductsFiltersComponent implements OnInit {
 
   private initProductFiltersFormHandler() {
     this.productFiltersForm.valueChanges.pipe(
-      debounceTime(300),
+      debounceTime(500),
       distinctUntilChanged(Utils.compareProducts)
     ).subscribe((productFilterValue: ProductFilters)  => {
       this.productFiltersChangedEvent.emit(productFilterValue);

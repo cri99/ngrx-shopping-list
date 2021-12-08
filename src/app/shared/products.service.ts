@@ -12,8 +12,7 @@ export class ProductsService {
   private readonly _allProducts$ = new BehaviorSubject<Product[]>(DEFAULT_PRODUCTS);
   private readonly _productFilters$ = new BehaviorSubject<ProductFilters>({});
   
-  constructor() { 
-  }
+  constructor() {}
 
   private applyProductsFilters(products: Product[], filters: ProductFilters): Product[] {
     return products.filter(product => {
