@@ -21,6 +21,11 @@ import { AvailableProductsContainerComponent } from './main-container/available-
 import { UpdateProductComponent } from './main-container/update-product/update-product.component';
 import { NewCategoryComponent } from './main-container/new-category/new-category.component';
 import { NewProductComponent } from './main-container/new-product/new-product.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { allCategoriesReducer, allProductsReducer, productFiltersReducer } from './store/reducers';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +53,16 @@ import { NewProductComponent } from './main-container/new-product/new-product.co
     BrowserModule,
     MatIconModule,
     BrowserAnimationsModule,
+
+    StoreModule.forRoot({
+      products: allProductsReducer,
+      categories: allCategoriesReducer,
+      filters: productFiltersReducer
+    }),
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production
+    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

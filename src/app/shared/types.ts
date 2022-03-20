@@ -1,5 +1,12 @@
 import { Utils } from "./utils";
 
+export interface AppState {
+    products: Product[],
+    categories: Category[],
+    filters: ProductFilters
+}
+
+
 export class Product {
     id: number;
     name: string;

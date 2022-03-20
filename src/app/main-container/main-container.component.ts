@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { CategoriesService } from '../shared/categories.service';
-import { ProductsService } from '../shared/products.service';
-import { Category, Product } from '../shared/types';
+import { AppState, Category, Product } from '../shared/types';
+import { addNewCategory, addNewProduct, updateProduct } from '../store/actions';
+import { selectShoppingListProducts } from '../store/selectors';
 
 @Component({
   selector: 'app-main-container',
@@ -17,26 +17,24 @@ export class ShoppingListContainerComponent implements OnInit {
   shoppingListProducts$!: Observable<Product[]>;
 
   constructor(
-    private productsService: ProductsService,
-    private categoriesService: CategoriesService,
-    public dialog: MatDialog
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
-    this.availableCategories$ = this.categoriesService.getAllCategories$();
-    this.shoppingListProducts$ = this.productsService.getInListProducts$();
+    this.availableCategories$ = this.store.select('categories');
+    this.shoppingListProducts$ = this.store.select(selectShoppingListProducts);
   }
 
   onNewProductCreated(newProduct: Product) {
-    this.productsService.addNewProduct(newProduct);
+    this.store.dispatch(addNewProduct(newProduct));
   }
 
   onNewCategoryCreated(newCategory: Category) {
-    this.categoriesService.addNewCategory(newCategory);
+    this.store.dispatch(addNewCategory(newCategory));
   }
 
   onPurchasedProduct(purchasedProduct: Product) {
-    this.productsService.markProductAsPurchased(purchasedProduct);
+    this.store.dispatch(updateProduct({...purchasedProduct, inList: false}));
   }
 
 }

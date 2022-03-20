@@ -14,10 +14,11 @@ import { Utils } from '../../../shared/utils';
 export class ProductsFiltersComponent implements OnInit {
 
   productFiltersForm!: FormGroup;
-  productFilters = new ProductFilters();
   
   @Input() availableCategories: Category[] = [];
-  @Output() productFiltersChangedEvent = new EventEmitter<ProductFilters>();
+  
+  @Input() productFilters = new ProductFilters();
+  @Output() productFiltersChange = new EventEmitter<ProductFilters>();
 
   constructor() { }
 
@@ -38,7 +39,7 @@ export class ProductsFiltersComponent implements OnInit {
       debounceTime(500),
       distinctUntilChanged(Utils.compareProducts)
     ).subscribe((productFilterValue: ProductFilters)  => {
-      this.productFiltersChangedEvent.emit(productFilterValue);
+      this.productFiltersChange.emit(productFilterValue);
     });
   }
  

@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { ProductsService } from '../../shared/products.service';
-import { Category, Product, ProductFilters } from '../../shared/types';
+import { deleteProduct, updateProduct, updateProductFilters } from 'src/app/store/actions';
+import { selectAvailableProducts } from 'src/app/store/selectors';
+import { AppState, Category, Product, ProductFilters } from '../../shared/types';
 import { UpdateProductModalData, UpdateProductComponent } from '../update-product/update-product.component';
 
 @Component({
@@ -15,20 +17,21 @@ import { UpdateProductModalData, UpdateProductComponent } from '../update-produc
 export class AvailableProductsContainerComponent implements OnInit {
 
   @Input() availableCategories: Category[] = [];
-  
   availableProducts$!: Observable<Product[]>;
+  productFilters$!: Observable<ProductFilters>;
 
   constructor(
     private dialog: MatDialog,
-    private productsService: ProductsService
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
-    this.availableProducts$ = this.productsService.getAvailableProducts$();
+    this.availableProducts$ = this.store.select(selectAvailableProducts);
+    this.productFilters$ =  this.store.select('filters');
   }
 
-  onDeleteProduct(productToDeleteID: number) {
-    this.productsService.deleteProduct(productToDeleteID);
+  onDeleteProduct(productToDeleteId: number) {
+    this.store.dispatch(deleteProduct({productToDeleteId}));
   }
 
   onProductToUpdate(productToUpdate: Product) {
@@ -43,18 +46,18 @@ export class AvailableProductsContainerComponent implements OnInit {
 
     this.dialog.open(UpdateProductComponent, { data: updateProductModalData, minWidth: 350 }).afterClosed()
       .pipe(
-        filter((product: Product) => !!product) // Uguale a scrivere -> filter(product => product !== undefined && product !== null)
+        filter((product: Product) => !!product) 
       ).subscribe((updatedProduct: Product) => {
-        this.productsService.updateProduct(updatedProduct);
+        this.store.dispatch(updateProduct(updatedProduct));
       })
   }
 
   onAddProductToShoppingList(productToAdd: Product) {
-    this.productsService.addProductToShoppingList(productToAdd);
+    this.store.dispatch(updateProduct({...productToAdd, inList: true}));
   }
 
-  onProductFiltersChanged(newProductFiltes: ProductFilters) {
-    this.productsService.updateProductsFilters(newProductFiltes);
+  onProductFiltersChanged(newProductFilters: ProductFilters) {
+    this.store.dispatch(updateProductFilters(newProductFilters));
   }
 
 }

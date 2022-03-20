@@ -5,7 +5,8 @@
 
 <app-products-filters 
     [availableCategories] = "availableCategories"
-    (productFiltersChangedEvent) = "onProductFiltersChanged($event)"></app-products-filters>
+    [productFilters] = "productFilters$ | async"
+    (productFiltersChange) = "onProductFiltersChanged($event)"></app-products-filters>
 
 <app-available-products-list
     [availableProducts] = "availableProducts$ | async"
