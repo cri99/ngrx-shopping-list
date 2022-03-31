@@ -2,15 +2,14 @@ import { createAction, props } from "@ngrx/store";
 import { Category, Product, ProductFilters } from "../shared/types";
 
 export const ACTIONS = {
-    ADD_NEW_CATEGORY: 'ADD_NEW_CATEGORY',
+    ADD_NEW_CATEGORY: '[MAIN] New category created',
 
-    ADD_NEW_PRODUCT: 'ADD_NEW_PRODUCT',
-    DELETE_PRODUCT: 'DELETE_PRODUCT',
-    PRODUCT_PURCHASED: 'PRODUCT_PURCHASED',
-    UPDATE_PRODUCT: 'UPDATE_PRODUCT',
+    ADD_NEW_PRODUCT: '[MAIN] New product added',
+    DELETE_PRODUCT: '[MAIN] Product deleted',
+    PRODUCT_PURCHASED: '[MAIN] Product purchased',
+    UPDATE_PRODUCT: '[MAIN] Product Updated',
 
-    UPDATE_PRODUCT_FILTERS: 'UPDATE_PRODUCT_FILTERS'
-
+    UPDATE_PRODUCT_FILTERS: '[MAIN] Filters Updated'
 }
 
 export const addNewCategory = createAction(ACTIONS.ADD_NEW_CATEGORY, props<Category>());

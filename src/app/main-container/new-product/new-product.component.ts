@@ -25,7 +25,4 @@ export class NewProductComponent {
     this.newProduct = new Product();
     newProductForm.reset();
   }
-
-
-
 }
