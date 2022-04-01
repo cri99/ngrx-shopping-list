@@ -60,7 +60,8 @@ import { allCategoriesReducer, allProductsReducer, productFiltersReducer } from 
       filters: productFiltersReducer
     }),
     StoreDevtoolsModule.instrument({
-      logOnly: environment.production
+      logOnly: environment.production,
+      maxAge: 25
     })
 
   ],
